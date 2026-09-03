@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Greater North Miami Chamber | Three design directions</title>
+<style>
+  :root{--ink:#0b0f14;--paper:#f6f5f1;--line:#d9d8d2;--citron:#5f6d18;--navy:#1860a8}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+  main{max-width:1100px;margin:0 auto;padding:56px 24px 80px}
+  h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 12px}
+  .lede{max-width:60ch;color:#3d4247;margin:0 0 40px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:860px){.grid{grid-template-columns:1fr}}
+  a.card{display:block;background:#fff;border:1px solid var(--line);color:inherit;text-decoration:none;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.35)}
+  a.card:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+  .swatch{height:120px;display:flex;align-items:flex-end;padding:16px;font-weight:700;letter-spacing:-.01em;font-size:1.35rem}
+  .body{padding:18px 20px 22px}
+  .body p{margin:0 0 10px;color:#3d4247;font-size:.98rem}
+  .body b{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--citron);margin-bottom:6px}
+  .open{display:inline-block;margin-top:8px;font-weight:700;color:var(--navy)}
+  .note{margin-top:40px;padding:18px 20px;border-left:3px solid var(--citron);background:#fff;font-size:.95rem;color:#3d4247;max-width:70ch}
+</style>
+</head>
+<body>
+<main>
+  <h1>Three directions for the Greater North Miami Chamber website</h1>
+  <p class="lede">Every version is a complete site: the same twenty-one pages the current site has, the same information, three different designs. Open each one, click through a few pages on a phone and on a desktop, and pick the one that feels right.</p>
+  <div class="grid">
+    <a class="card" href="v1-marine/index.html">
+      <div class="swatch" style="background:#0d1b2a;color:#eaf0f5;font-family:Georgia,serif">Marine</div>
+      <div class="body"><b>Cinematic, dark</b><p>Navy ground, the community photograph inside the Chamber's own double keyline, light raking across it. Reads as a flagship.</p><span class="open">Open Marine</span></div>
+    </a>
+    <a class="card" href="v2-daylight/index.html">
+      <div class="swatch" style="background:#f3f2ee;color:#101720;font-family:Georgia,serif;border-bottom:1px solid var(--line)">Daylight</div>
+      <div class="body"><b>Editorial, paper</b><p>Warm paper, the founding year 1947 set huge, everything ruled like a ledger. Reads as an institution with a record.</p><span class="open">Open Daylight</span></div>
+    </a>
+    <a class="card" href="v3-keyline/index.html">
+      <div class="swatch" style="background:#1860a8;color:#fff">Keyline</div>
+      <div class="body"><b>Precise, civic</b><p>The logo's own white, black, blue and citron on a visible grid, the keyline drawing itself around the hero. Reads as clear and trustworthy.</p><span class="open">Open Keyline</span></div>
+    </a>
+  </div>
+  <p class="note">These are private review copies and are not indexed by search engines. Names on the board and staff pages are left for the Chamber to supply; nothing else on any page has been invented.</p>
+</main>
+</body>
+</html>
