@@ -49,11 +49,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 /* 01 the drift: two warm orbs moving very slowly under the sheet, the only motion that lives mid-page */
 .bg{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:var(--paper)}
 .bg i{position:absolute;border-radius:50%;opacity:.8;will-change:transform}
-.bg i:nth-child(1){width:70vw;height:70vw;left:-20vw;top:-28vw;background:radial-gradient(circle,var(--warm) 0%,rgba(233,226,207,0) 68%);animation:drift1 26s ease-in-out infinite alternate}
-.bg i:nth-child(2){width:56vw;height:56vw;right:-18vw;bottom:-16vw;background:radial-gradient(circle,#dfe6f1 0%,rgba(223,230,241,0) 68%);animation:drift2 32s ease-in-out infinite alternate}
-.bg i:nth-child(3){width:40vw;height:40vw;left:36vw;top:44vh;background:radial-gradient(circle,#e6ead6 0%,rgba(230,234,214,0) 68%);opacity:.7;animation:drift1 38s ease-in-out infinite alternate-reverse}
-@keyframes drift1{to{transform:translate(9vw,14vh) scale(1.12)}}
-@keyframes drift2{to{transform:translate(-11vw,-12vh) scale(1.08)}}
+.bg i:nth-child(1){width:70vw;height:70vw;left:-20vw;top:-28vw;background:radial-gradient(circle,var(--warm) 0%,rgba(233,226,207,0) 68%);animation:drift1 12s ease-in-out infinite alternate}
+.bg i:nth-child(2){width:56vw;height:56vw;right:-18vw;bottom:-16vw;background:radial-gradient(circle,#dfe6f1 0%,rgba(223,230,241,0) 68%);animation:drift2 15s ease-in-out infinite alternate}
+.bg i:nth-child(3){width:40vw;height:40vw;left:36vw;top:44vh;background:radial-gradient(circle,#e6ead6 0%,rgba(230,234,214,0) 68%);opacity:.7;animation:drift1 18s ease-in-out infinite alternate-reverse}
+@keyframes drift1{to{transform:translate(16vw,22vh) scale(1.18)}}
+@keyframes drift2{to{transform:translate(-18vw,-20vh) scale(1.12)}}
 @media (prefers-reduced-motion:reduce){.bg i{animation:none}}
 a{color:var(--link);text-decoration:none;background-image:linear-gradient(var(--citron-raw),var(--citron-raw));background-size:100% 1px;background-repeat:no-repeat;background-position:0 100%}
 a:hover{color:var(--ink)}
