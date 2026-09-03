@@ -479,7 +479,8 @@ document.documentElement.classList.add('js');
   var mouse = {x:.5,y:.5}, smooth = {x:.5,y:.5}, raf = null, visible = true, lost = false, STILL_T = 6.2;
   function place(){ var dpr = 0.5; var w = container.clientWidth, h = container.clientHeight; if (!w||!h) return; canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr); gl.viewport(0,0,canvas.width,canvas.height); var W = w*dpr, H = h*dpr; gl.uniform2f(U.iResolution, W, H); gl.uniform2f(U.rayPos, .5*W, -.2*H); gl.uniform2f(U.rayDir, 0, 1); }
   function draw(t){ if (lost) return; gl.uniform1f(U.iTime, t); gl.uniform2f(U.mousePos, smooth.x, smooth.y); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLES, 0, 3); }
-  function loop(ts){ raf = null; if (!visible || lost) return; smooth.x += (mouse.x - smooth.x)*.08; smooth.y += (mouse.y - smooth.y)*.08; draw(ts*.001); raf = requestAnimationFrame(loop); }
+  var lastDraw = 0;
+  function loop(ts){ raf = null; if (!visible || lost) return; var gap = scrollY > innerHeight * 1.5 ? 50 : 33; if (ts - lastDraw >= gap) { lastDraw = ts; smooth.x += (mouse.x - smooth.x)*.16; smooth.y += (mouse.y - smooth.y)*.16; draw(ts*.001); } raf = requestAnimationFrame(loop); }
   function start(){ if (reduced) { draw(STILL_T); return; } if (!raf) raf = requestAnimationFrame(loop); }
   function stop(){ if (raf) cancelAnimationFrame(raf); raf = null; }
   place(); start();

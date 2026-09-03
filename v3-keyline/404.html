@@ -64,7 +64,7 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:64ch}
 .bg i{position:absolute;width:39px;height:39px;opacity:0;animation:cell 9s ease infinite;animation-delay:var(--d)}
 .bg i.a{background:var(--citron)}
 .bg i.b{background:var(--blue)}
-@keyframes cell{0%{opacity:0}47%{opacity:.22}53%{opacity:.22}100%{opacity:0}}
+@keyframes cell{0%{opacity:0}47%{opacity:.3}53%{opacity:.3}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.bg i{animation:none;opacity:.12}}
 .page{position:relative;z-index:1}
 /* the keyline: two strokes, blue inside citron. THE motif. */
@@ -401,24 +401,11 @@ document.documentElement.classList.add('js');
     document.addEventListener('pointerleave', function(){ document.documentElement.classList.remove('cur'); shown = false; });
     (function loop(){ cx += (mx - cx) * .22; cy += (my - cy) * .22; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
   }
-  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-  var idle = window.requestIdleCallback || function(f){ setTimeout(f, 120); };
-  idle(function(){
-  if (hasGsap && !reduced) {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.batch('.rv', { start: 'top 88%', once: true, onEnter: function(els){ els.forEach(function(e, i){ setTimeout(function(){ e.classList.add('in'); }, i*80); }); } });
-    document.querySelectorAll('.draw,.meter').forEach(function(k){ ScrollTrigger.create({ trigger: k, start: 'top 90%', once: true, onEnter: function(){ k.classList.add('in'); } }); });
-    document.querySelectorAll('.tile b[data-n]').forEach(function(b){
-      var final = b.textContent, n = parseFloat(b.dataset.n), pre = b.dataset.pre || '', o = { v: 0 };
-      ScrollTrigger.create({ trigger: b, start: 'top 92%', once: true, onEnter: function(){ gsap.to(o, { v: n, duration: 1.4, ease: 'power2.out', onUpdate: function(){ b.textContent = pre + Math.round(o.v).toLocaleString('en-US'); }, onComplete: function(){ b.textContent = final; } }); } });
-    });
-    /* the timeline meter is scrubbed: 1947 to today fills as the reader scrolls past it */
-    var m = document.querySelector('.meter i');
-    if (m) gsap.fromTo(m, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 85%', end: 'top 35%', scrub: .6 } });
-  } else {
-    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
-    document.querySelectorAll('.rv,.draw,.meter').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
-  }
-  });
+  /* CONVERSION tier: no motion engine. One observer reveals, counts and draws; one handler scrubs the meter. */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (!x.isIntersecting) return; var e = x.target; e.classList.add('in'); io.unobserve(e); e.querySelectorAll('b[data-n]').forEach(count); }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
+  function count(b){ if (b.__done || reduced) return; b.__done = true; var final = b.textContent, n = parseFloat(b.dataset.n), pre = b.dataset.pre || '', t0 = null; function step(ts){ if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400); p = 1 - Math.pow(1 - p, 3); b.textContent = pre + Math.round(n * p).toLocaleString('en-US'); if (p < 1) requestAnimationFrame(step); else b.textContent = final; } requestAnimationFrame(step); }
+  document.querySelectorAll('.rv,.draw,.meter,.tile').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
+  var meter = document.querySelector('.meter i'), tl = document.querySelector('.timeline');
+  if (meter && tl && !reduced) { meter.style.transition = 'none'; var scrub = function(){ var r = tl.getBoundingClientRect(); var p = Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / (innerHeight * .5))); meter.style.transform = 'scaleX(' + p + ')'; }; scrub(); addEventListener('scroll', function(){ requestAnimationFrame(scrub); }, {passive:true}); }
 })();
 </script></body></html>
