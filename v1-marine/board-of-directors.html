@@ -68,7 +68,14 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 /* ---- 01 background: light rays (fixed layer) + grain wash ---- */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
   background:radial-gradient(80% 62% at 50% -8%,rgba(217,224,164,.16) 0%,transparent 68%),linear-gradient(180deg,#14283c 0%,var(--ground) 72%)}
-.bg canvas{display:block;width:100%;height:100%}
+.bg i{position:absolute;border-radius:50%;opacity:.55;will-change:transform}
+.bg i:nth-child(1){width:70vw;height:70vw;left:-20vw;top:-30vw;background:radial-gradient(circle,rgba(63,134,214,.22) 0%,rgba(63,134,214,0) 66%);animation:drift1 14s ease-in-out infinite alternate}
+.bg i:nth-child(2){width:56vw;height:56vw;right:-18vw;bottom:-16vw;background:radial-gradient(circle,rgba(156,173,58,.16) 0%,rgba(156,173,58,0) 66%);animation:drift2 17s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(16vw,22vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-18vw,-20vh) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.bg i{animation:none}}
+.rays{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.rays canvas{display:block;width:100%;height:100%}
 .bg::after{content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:160px 160px}
@@ -77,7 +84,7 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 .progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--citron);z-index:120}
 /* ---- 12 header: glass capsule nav ---- */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hdr);display:flex;align-items:center;transition:background .4s var(--ease),border-color .4s var(--ease)}
-.hdr.scrolled{background:rgba(13,27,42,.82);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line)}
+.hdr.scrolled{background:rgba(13,27,42,.94);border-bottom:1px solid var(--line)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
 .brand{display:flex;align-items:center;gap:12px;color:var(--ink-3);text-decoration:none;font-family:var(--font-display);font-size:1.25rem;letter-spacing:-.01em}
 .brand img{width:auto;height:44px}
@@ -89,7 +96,7 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 .nav-capsule summary:hover,.nav-capsule>a:hover,.nav-capsule details[open] summary{background:var(--surf-3);color:var(--ink)}
 .nav-capsule summary .ri{width:14px;height:14px;transition:transform .25s var(--ease)}
 .nav-capsule details[open] summary .ri{transform:rotate(180deg)}
-.menu{position:absolute;top:calc(100% + 10px);left:0;min-width:240px;padding:8px;border:1px solid var(--line-2);border-radius:14px;background:rgba(21,35,47,.96);backdrop-filter:blur(16px);box-shadow:0 24px 48px -24px rgba(0,0,0,.7)}
+.menu{position:absolute;top:calc(100% + 10px);left:0;min-width:240px;padding:8px;border:1px solid var(--line-2);border-radius:14px;background:rgba(21,35,47,.96);box-shadow:0 24px 48px -24px rgba(0,0,0,.7)}
 .menu a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink-2);text-decoration:none;font-size:.9rem;min-height:44px;display:flex;align-items:center}
 .menu a:hover,.menu a:focus-visible{background:var(--surf-3);color:var(--ink)}
 .menu a[aria-current=page]{color:var(--citron-text)}
@@ -101,7 +108,7 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 .burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.sheet{position:fixed;inset:0;z-index:99;background:rgba(13,27,42,.97);backdrop-filter:blur(18px);padding:calc(var(--hdr) + 16px) clamp(20px,5vw,48px) 40px;overflow:auto;transform:translateY(-100%);opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .4s var(--ease),visibility .4s}
+.sheet{position:fixed;inset:0;z-index:99;background:rgba(13,27,42,.985);padding:calc(var(--hdr) + 16px) clamp(20px,5vw,48px) 40px;overflow:auto;transform:translateY(-100%);opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .4s var(--ease),visibility .4s}
 .sheet.open{transform:none;opacity:1;visibility:visible}
 .sheet .fh{font:500 .75rem/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--citron-text);margin:var(--s3) 0 var(--s1)}
 .sheet a{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-family:var(--font-display);font-size:1.5rem;min-height:44px}
@@ -121,7 +128,8 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 .btn-ghost:hover::after{border-color:rgba(156,173,58,.5)}
 .btn:disabled,.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed;transform:none}
 /* ---- hero: the lit frame ---- */
-.hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:calc(var(--hdr) + var(--s5)) 0 var(--s5);overflow:hidden}
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:calc(var(--hdr) + var(--s5)) 0 var(--s5);overflow:hidden;isolation:isolate}
+.hero .wrap,.hero .scrim{position:relative;z-index:1}
 .hero .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s3);align-items:end}
 .hero-copy{grid-column:1/8;position:relative;z-index:2}
 .hero-fig{grid-column:8/13;position:relative;z-index:1;perspective:1200px}
@@ -153,7 +161,7 @@ p{margin:0 0 var(--s2);text-wrap:pretty;max-width:66ch}
 .crumbs a:hover{color:var(--ink)}
 .crumbs li+li::before{content:"/";margin-right:8px;color:var(--ink-4)}
 /* ---- 15 proof bar with count-up ---- */
-.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(21,35,47,.35);backdrop-filter:blur(6px)}
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(21,35,47,.55)}
 .proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);padding:var(--s4) 0}
 .stat b{display:block;font:400 var(--t5)/1 var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums}
 .stat span{display:block;font:500 .75rem/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
@@ -311,13 +319,13 @@ html.js .hero .st.in{opacity:1;transform:none;transition:opacity .9s var(--ease)
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true"><canvas id="rays"></canvas></div>
+<div class="bg" aria-hidden="true"><i></i><i></i></div>
 <div class="page">
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <header class="hdr">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="The Greater North Miami Chamber of Commerce, home"><img src="img/logo-dark.png" width="110" height="44" alt="The Greater North Miami Chamber of Commerce"></a>
+    <a class="brand" href="index.html" aria-label="The Greater North Miami Chamber of Commerce, home"><img decoding="async" src="img/logo-dark.png" width="110" height="44" alt="The Greater North Miami Chamber of Commerce"></a>
     <nav class="nav-capsule" aria-label="Primary"><details><summary>About <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 16L6 10H18L12 16Z"/></svg></summary><div class="menu"><a href="about.html">About</a><a href="our-mission.html">Our Mission</a><a href="board-of-directors.html" aria-current="page">Board of Directors</a><a href="staff.html">Staff</a><a href="committees.html">Committees</a></div></details><details><summary>Membership <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 16L6 10H18L12 16Z"/></svg></summary><div class="menu"><a href="membership.html">Membership</a><a href="why-join.html">Why Join</a><a href="membership-benefits.html">Membership Benefits</a><a href="membership-levels.html">Membership Levels</a><a href="join.html">Join the Chamber</a></div></details><details><summary>Events <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 16L6 10H18L12 16Z"/></svg></summary><div class="menu"><a href="events.html">Events</a><a href="chamber-events-calendar.html">Chamber Events Calendar</a><a href="chamber-news.html">Chamber News</a></div></details><details><summary>Resources <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 16L6 10H18L12 16Z"/></svg></summary><div class="menu"><a href="resources.html">Resources</a><a href="business-resources.html">Business Resources</a><a href="start-a-business-in-miami-dade.html">Start a Business in Miami-Dade</a><a href="economic-snapshot.html">Economic Snapshot</a><a href="the-business-center-miami.html">The Business Center Miami</a><a href="community-links.html">Community Links</a></div></details><a href="contact-us.html">Contact</a></nav>
     <div class="hdr-cta">
       <a class="login" href="https://app.associationsphere.com/Portal/Account/Login?prm=7yIa__T7RNcHO6jE_PUDfZnASM_Se-Of65Gdr4XdgE25foYKEJ4ZvHaCOR-Tf4gj53Tl2hLI4ZAivbqk3gt3IyssDeu5g1wV3gBc-V5hkYwaWPozU3XdKT5MKIMWQCOrqI-wc0x4GKOyUUS_Qk6U9GvOXRNLkJGI48p8zB6alaWAsRv_OxVhHwf9H_LS4SgRpl5Fk2DNKN-IF9ldhb5fCZAr_BDi8skPFt0rG61wfANLDcSZkohvJFedrYlQ3sg5ze0tWbvXbY2gbxtCpmMREhSta31GFD8XsmNo3HzE2l1E-OgroSf9BiwK44mgOyX07m1CCz4VZl-zjk31zF7ZAIuIA6F3fYNJfwXRO-IudthtlRWkbmEAHwnq0Ezeh9BrmX4EOjPKaqkqKkDEaBrOYP2Z8SJaVf6oKFUWJShVsie2kw9t5uygmGY_mVbFfWKV4xjIq3M16o8jfD4EiP5yLqk2BvsZzrDW1ls_mNDM05ueyTNfW7-j1-kATe1Lj6Pqs-Yj3_i013Oho18lU4tG-pfcfgcNMh5eqZmKT3RiYrBt3zfRIdfQaEdMqjXP8i4r0" target="_blank" rel="noopener noreferrer"><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"/></svg> Member login<span class="sr"> (opens in a new tab)</span></a>
@@ -327,7 +335,7 @@ html.js .hero .st.in{opacity:1;transform:none;transition:opacity .9s var(--ease)
   </div>
 </header>
 <nav class="sheet" id="sheet" aria-label="Mobile"><p class="fh">About</p><a href="about.html">About <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="our-mission.html">Our Mission <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="board-of-directors.html">Board of Directors <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="staff.html">Staff <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="committees.html">Committees <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><p class="fh">Membership</p><a href="membership.html">Membership <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="why-join.html">Why Join <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="membership-benefits.html">Membership Benefits <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="membership-levels.html">Membership Levels <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="join.html">Join the Chamber <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><p class="fh">Events</p><a href="events.html">Events <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="chamber-events-calendar.html">Chamber Events Calendar <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="chamber-news.html">Chamber News <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><p class="fh">Resources</p><a href="resources.html">Resources <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="business-resources.html">Business Resources <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="start-a-business-in-miami-dade.html">Start a Business in Miami-Dade <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="economic-snapshot.html">Economic Snapshot <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="the-business-center-miami.html">The Business Center Miami <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><a href="community-links.html">Community Links <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><p class="fh">Contact</p><a href="contact-us.html">Contact <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 12L10 18V6L16 12Z"/></svg></a><p class="fh">Members</p><a href="https://app.associationsphere.com/Portal/Account/Login?prm=7yIa__T7RNcHO6jE_PUDfZnASM_Se-Of65Gdr4XdgE25foYKEJ4ZvHaCOR-Tf4gj53Tl2hLI4ZAivbqk3gt3IyssDeu5g1wV3gBc-V5hkYwaWPozU3XdKT5MKIMWQCOrqI-wc0x4GKOyUUS_Qk6U9GvOXRNLkJGI48p8zB6alaWAsRv_OxVhHwf9H_LS4SgRpl5Fk2DNKN-IF9ldhb5fCZAr_BDi8skPFt0rG61wfANLDcSZkohvJFedrYlQ3sg5ze0tWbvXbY2gbxtCpmMREhSta31GFD8XsmNo3HzE2l1E-OgroSf9BiwK44mgOyX07m1CCz4VZl-zjk31zF7ZAIuIA6F3fYNJfwXRO-IudthtlRWkbmEAHwnq0Ezeh9BrmX4EOjPKaqkqKkDEaBrOYP2Z8SJaVf6oKFUWJShVsie2kw9t5uygmGY_mVbFfWKV4xjIq3M16o8jfD4EiP5yLqk2BvsZzrDW1ls_mNDM05ueyTNfW7-j1-kATe1Lj6Pqs-Yj3_i013Oho18lU4tG-pfcfgcNMh5eqZmKT3RiYrBt3zfRIdfQaEdMqjXP8i4r0" rel="noopener noreferrer" target="_blank">Member login <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"/></svg></a></nav>
-<main id="main" tabindex="-1"><section class="hero-page"><div class="band" aria-hidden="true"><img src="img/live/about-us-hdr.webp" width="1600" height="291" alt="" fetchpriority="high"></div><div class="wrap"><nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="index.html">Home</a></li><li>About</li><li aria-current="page">Board of Directors</li></ol></nav><p class="eyebrow st">Board of Directors</p><h1 class="st">Leadership from across Miami-Dade</h1><p class="deck st">Business, civic, and community leaders guiding the Chamber&#x27;s mission and strategic direction.</p></div></section><section class="pad"><div class="wrap prose"><div class="aside rv"><div class="sq"><img src="img/live/about-us-img.webp" srcset="img/live/about-us-img-640.webp 640w, img/live/about-us-img.webp 1200w" sizes="(max-width: 900px) 100vw, 600px" width="1000" height="1000" alt="Board of Directors, Greater North Miami Chamber" loading="lazy"></div><div class="note">Office: 13100 West Dixie Highway, North Miami, FL 33161. Monday to Friday, 8:30 AM to 4:30 PM.</div></div><div class="main rv"><h2>Who they are</h2><p>Our Board of Directors brings together business, civic, and community leadership from across Miami-Dade to guide the Chamber&#x27;s mission and strategic direction. Their leadership keeps the Greater North Miami Chamber of Commerce focused on the needs of local businesses, entrepreneurs, residents, and community partners while supporting responsible growth throughout the region.</p><h2>What they bring</h2><p>With experience across multiple industries and sectors, the Board provides insight, accountability, and vision as the Chamber develops programs, strengthens partnerships, supports member engagement, and responds to opportunities affecting Greater North Miami and the broader Miami-Dade business community.</p><h2>Why it matters</h2><p>Through their service, commitment, and connection to the community, the Board advances the Chamber&#x27;s role as a trusted resource, advocate, and connector for businesses and leaders working to build a stronger local economy.</p></div></div></section><section class="cta-band"><div class="wrap">
+<main id="main" tabindex="-1"><section class="hero-page"><div class="band" aria-hidden="true"><img decoding="async" src="img/live/about-us-hdr.webp" width="1600" height="291" alt="" fetchpriority="high"></div><div class="wrap"><nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="index.html">Home</a></li><li>About</li><li aria-current="page">Board of Directors</li></ol></nav><p class="eyebrow st">Board of Directors</p><h1 class="st">Leadership from across Miami-Dade</h1><p class="deck st">Business, civic, and community leaders guiding the Chamber&#x27;s mission and strategic direction.</p></div></section><section class="pad"><div class="wrap prose"><div class="aside rv"><div class="sq"><img decoding="async" src="img/live/about-us-img.webp" srcset="img/live/about-us-img-640.webp 640w, img/live/about-us-img.webp 1200w" sizes="(max-width: 900px) 100vw, 600px" width="1000" height="1000" alt="Board of Directors, Greater North Miami Chamber" loading="lazy"></div><div class="note">Office: 13100 West Dixie Highway, North Miami, FL 33161. Monday to Friday, 8:30 AM to 4:30 PM.</div></div><div class="main rv"><h2>Who they are</h2><p>Our Board of Directors brings together business, civic, and community leadership from across Miami-Dade to guide the Chamber&#x27;s mission and strategic direction. Their leadership keeps the Greater North Miami Chamber of Commerce focused on the needs of local businesses, entrepreneurs, residents, and community partners while supporting responsible growth throughout the region.</p><h2>What they bring</h2><p>With experience across multiple industries and sectors, the Board provides insight, accountability, and vision as the Chamber develops programs, strengthens partnerships, supports member engagement, and responds to opportunities affecting Greater North Miami and the broader Miami-Dade business community.</p><h2>Why it matters</h2><p>Through their service, commitment, and connection to the community, the Board advances the Chamber&#x27;s role as a trusted resource, advocate, and connector for businesses and leaders working to build a stronger local economy.</p></div></div></section><section class="cta-band"><div class="wrap">
   <h2 class="rv">Ready to <em>join</em>?</h2><p class="deck rv">Three levels, the price on the page, and an office that answers the phone.</p>
   <div class="hero-cta rv" style="justify-content:center"><a class="btn btn-primary" href="join.html">Join the Chamber <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></a><a class="btn btn-ghost" href="contact-us.html">Talk to the office</a></div>
 </div></section></main>
@@ -335,7 +343,7 @@ html.js .hero .st.in{opacity:1;transform:none;transition:opacity .9s var(--ease)
   <div class="wrap">
     <div class="grid">
       <div>
-        <img src="img/logo-dark.png" width="150" height="60" alt="The Greater North Miami Chamber of Commerce" loading="lazy">
+        <img decoding="async" src="img/logo-dark.png" width="150" height="60" alt="The Greater North Miami Chamber of Commerce" loading="lazy">
         <p style="margin-top:16px;color:var(--ink-2);font-size:.95rem">Connecting businesses, leaders, and community partners across Greater North Miami with resources, visibility, and opportunities for growth.</p>
         <div class="social"><a href="https://www.facebook.com/GreaterNorthMiamiChamberofCommerce" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)"><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47062 14 5.5 16 5.5H17.5V2.1401C17.1743 2.09685 15.943 2 14.6429 2C11.9284 2 10 3.65686 10 6.69971V9.5H7V13.5H10V22H14V13.5Z"/></svg></a><a href="https://x.com/GNMiamiChamber" target="_blank" rel="noopener noreferrer" aria-label="X (opens in a new tab)"><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z"/></svg></a><a href="https://www.instagram.com/greaternorthmiami/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.001 9C10.3436 9 9.00098 10.3431 9.00098 12C9.00098 13.6573 10.3441 15 12.001 15C13.6583 15 15.001 13.6569 15.001 12C15.001 10.3427 13.6579 9 12.001 9ZM12.001 7C14.7614 7 17.001 9.2371 17.001 12C17.001 14.7605 14.7639 17 12.001 17C9.24051 17 7.00098 14.7629 7.00098 12C7.00098 9.23953 9.23808 7 12.001 7ZM18.501 6.74915C18.501 7.43926 17.9402 7.99917 17.251 7.99917C16.5609 7.99917 16.001 7.4384 16.001 6.74915C16.001 6.0599 16.5617 5.5 17.251 5.5C17.9393 5.49913 18.501 6.0599 18.501 6.74915ZM12.001 4C9.5265 4 9.12318 4.00655 7.97227 4.0578C7.18815 4.09461 6.66253 4.20007 6.17416 4.38967C5.74016 4.55799 5.42709 4.75898 5.09352 5.09255C4.75867 5.4274 4.55804 5.73963 4.3904 6.17383C4.20036 6.66332 4.09493 7.18811 4.05878 7.97115C4.00703 9.0752 4.00098 9.46105 4.00098 12C4.00098 14.4745 4.00753 14.8778 4.05877 16.0286C4.0956 16.8124 4.2012 17.3388 4.39034 17.826C4.5591 18.2606 4.7605 18.5744 5.09246 18.9064C5.42863 19.2421 5.74179 19.4434 6.17187 19.6094C6.66619 19.8005 7.19148 19.9061 7.97212 19.9422C9.07618 19.9939 9.46203 20 12.001 20C14.4755 20 14.8788 19.9934 16.0296 19.9422C16.8117 19.9055 17.3385 19.7996 17.827 19.6106C18.2604 19.4423 18.5752 19.2402 18.9074 18.9085C19.2436 18.5718 19.4445 18.2594 19.6107 17.8283C19.8013 17.3358 19.9071 16.8098 19.9432 16.0289C19.9949 14.9248 20.001 14.5389 20.001 12C20.001 9.52552 19.9944 9.12221 19.9432 7.97137C19.9064 7.18906 19.8005 6.66149 19.6113 6.17318C19.4434 5.74038 19.2417 5.42635 18.9084 5.09255C18.573 4.75715 18.2616 4.55693 17.8271 4.38942C17.338 4.19954 16.8124 4.09396 16.0298 4.05781C14.9258 4.00605 14.5399 4 12.001 4ZM12.001 2C14.7176 2 15.0568 2.01 16.1235 2.06C17.1876 2.10917 17.9135 2.2775 18.551 2.525C19.2101 2.77917 19.7668 3.1225 20.3226 3.67833C20.8776 4.23417 21.221 4.7925 21.476 5.45C21.7226 6.08667 21.891 6.81333 21.941 7.8775C21.9885 8.94417 22.001 9.28333 22.001 12C22.001 14.7167 21.991 15.0558 21.941 16.1225C21.8918 17.1867 21.7226 17.9125 21.476 18.55C21.2218 19.2092 20.8776 19.7658 20.3226 20.3217C19.7668 20.8767 19.2076 21.22 18.551 21.475C17.9135 21.7217 17.1876 21.89 16.1235 21.94C15.0568 21.9875 14.7176 22 12.001 22C9.28431 22 8.94514 21.99 7.87848 21.94C6.81431 21.8908 6.08931 21.7217 5.45098 21.475C4.79264 21.2208 4.23514 20.8767 3.67931 20.3217C3.12348 19.7658 2.78098 19.2067 2.52598 18.55C2.27848 17.9125 2.11098 17.1867 2.06098 16.1225C2.01348 15.0558 2.00098 14.7167 2.00098 12C2.00098 9.28333 2.01098 8.94417 2.06098 7.8775C2.11014 6.8125 2.27848 6.0875 2.52598 5.45C2.78014 4.79167 3.12348 4.23417 3.67931 3.67833C4.23514 3.1225 4.79348 2.78 5.45098 2.525C6.08848 2.2775 6.81348 2.11 7.87848 2.06C8.94514 2.0125 9.28431 2 12.001 2Z"/></svg></a><a href="https://www.linkedin.com/company/greaternorthmiamichamber" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z"/></svg></a></div>
       </div>
@@ -352,7 +360,7 @@ html.js .hero .st.in{opacity:1;transform:none;transition:opacity .9s var(--ease)
   </div>
 </footer>
 </div>
-<script src="js/gsap.min.js"></script><script src="js/ScrollTrigger.min.js"></script><script>
+<script>
 document.documentElement.classList.add('js');
 (function(){
   'use strict';
@@ -430,37 +438,17 @@ document.documentElement.classList.add('js');
   /* 04 + 14: staged hero, masked line reveal */
   var stage = document.querySelectorAll('.hero .st');
   stage.forEach(function(el, i){ setTimeout(function(){ el.classList.add('in'); }, reduced ? 0 : 120 + i*140); });
-  /* 05 + 15: GSAP ScrollTrigger reveals, count-ups and keyline draws, with IO fallback */
-  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+  /* Engine-free, like Keyline: one observer reveals and counts. No scrubbed parallax, nothing runs on every scroll frame. */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (!x.isIntersecting) return; var e = x.target; e.classList.add('in'); io.unobserve(e); e.querySelectorAll('b[data-n]').forEach(count); }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
+  function count(b){ if (b.__done || reduced) return; b.__done = true; var final = b.textContent, n = parseFloat(b.dataset.n), pre = b.dataset.pre || '', t0 = null; function step(ts){ if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400); p = 1 - Math.pow(1 - p, 3); b.textContent = pre + Math.round(n * p).toLocaleString('en-US'); if (p < 1) requestAnimationFrame(step); else b.textContent = final; } requestAnimationFrame(step); }
+  document.querySelectorAll('.rv,.kl,.stat').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
   var idle = window.requestIdleCallback || function(f){ setTimeout(f, 120); };
-  idle(function(){
-  if (hasGsap && !reduced) {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.batch('.rv', { start: 'top 88%', once: true, onEnter: function(els){ els.forEach(function(e, i){ setTimeout(function(){ e.classList.add('in'); }, i*90); }); } });
-    document.querySelectorAll('.kl').forEach(function(k){ ScrollTrigger.create({ trigger: k, start: 'top 92%', once: true, onEnter: function(){ k.classList.add('in'); } }); });
-    document.querySelectorAll('.stat b[data-n]').forEach(function(b){
-      var final = b.textContent, n = parseFloat(b.dataset.n), pre = b.dataset.pre || '', suf = b.dataset.suf || '';
-      var o = { v: 0 };
-      ScrollTrigger.create({ trigger: b, start: 'top 90%', once: true, onEnter: function(){
-        gsap.to(o, { v: n, duration: 1.6, ease: 'power2.out', onUpdate: function(){ b.textContent = pre + Math.round(o.v).toLocaleString('en-US') + suf; }, onComplete: function(){ b.textContent = final; } });
-      }});
-    });
-    /* hero photo drifts 10% of its height against the scroll, scrubbed (05) */
-    var fig = document.querySelector('.hero-fig img');
-    if (fig) gsap.to(fig, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    var band = document.querySelector('.hero-page .band img');
-    if (band) gsap.to(band, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero-page', start: 'top top', end: 'bottom top', scrub: true } });
-  } else {
-    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
-    document.querySelectorAll('.rv,.kl').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
-  }
-  });
   /* 16 single-open accordion */
   var faq = document.querySelector('.faq');
   if (faq) faq.addEventListener('toggle', function(e){ if (e.target.open) faq.querySelectorAll('details[open]').forEach(function(d){ if (d !== e.target) d.open = false; }); }, true);
   /* 01 light rays, the React Bits shader verbatim (see 01-backgrounds/light-rays-cinematic.html). Compiled after idle so the text paints first. */
   idle(function(){
-  var container = document.querySelector('.bg'), canvas = document.getElementById('rays');
+  var canvas = document.getElementById('rays'), container = canvas && canvas.parentNode;
   if (!canvas) return;
   var css = getComputedStyle(document.documentElement);
   function num(name, dflt){ var v = parseFloat(css.getPropertyValue(name)); return isFinite(v) ? v : dflt; }
@@ -486,14 +474,17 @@ document.documentElement.classList.add('js');
   var mouse = {x:.5,y:.5}, smooth = {x:.5,y:.5}, raf = null, visible = true, lost = false, STILL_T = 6.2;
   function place(){ var dpr = 0.5; var w = container.clientWidth, h = container.clientHeight; if (!w||!h) return; canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr); gl.viewport(0,0,canvas.width,canvas.height); var W = w*dpr, H = h*dpr; gl.uniform2f(U.iResolution, W, H); gl.uniform2f(U.rayPos, .5*W, -.2*H); gl.uniform2f(U.rayDir, 0, 1); }
   function draw(t){ if (lost) return; gl.uniform1f(U.iTime, t); gl.uniform2f(U.mousePos, smooth.x, smooth.y); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLES, 0, 3); }
-  var lastDraw = 0;
-  function loop(ts){ raf = null; if (!visible || lost) return; var gap = scrollY > innerHeight * 1.5 ? 50 : 33; if (ts - lastDraw >= gap) { lastDraw = ts; smooth.x += (mouse.x - smooth.x)*.16; smooth.y += (mouse.y - smooth.y)*.16; draw(ts*.001); } raf = requestAnimationFrame(loop); }
+  var lastDraw = 0, lastScroll = 0;
+  addEventListener('scroll', function(){ lastScroll = performance.now(); }, {passive:true});
+  function loop(ts){ raf = null; if (!visible || lost || !heroSeen) return; var gap = 42; if (ts - lastScroll > 120 && ts - lastDraw >= gap) { lastDraw = ts; smooth.x += (mouse.x - smooth.x)*.16; smooth.y += (mouse.y - smooth.y)*.16; draw(ts*.001); } raf = requestAnimationFrame(loop); }
   function start(){ if (reduced) { draw(STILL_T); return; } if (!raf) raf = requestAnimationFrame(loop); }
   function stop(){ if (raf) cancelAnimationFrame(raf); raf = null; }
-  place(); start();
+  place();
+  var heroSeen = true;
+  if ('IntersectionObserver' in window) { new IntersectionObserver(function(en){ heroSeen = en[0].isIntersecting; heroSeen ? start() : stop(); }, { threshold: 0 }).observe(container); } else start();
   addEventListener('resize', function(){ place(); if (reduced) draw(STILL_T); });
   addEventListener('mousemove', function(e){ var r = container.getBoundingClientRect(); mouse.x = (e.clientX - r.left)/r.width; mouse.y = (e.clientY - r.top)/r.height; }, {passive:true});
-  document.addEventListener('visibilitychange', function(){ visible = !document.hidden; visible ? start() : stop(); });
+  document.addEventListener('visibilitychange', function(){ visible = !document.hidden; (visible && heroSeen) ? start() : stop(); });
   canvas.addEventListener('webglcontextlost', function(e){ e.preventDefault(); lost = true; stop(); });
   canvas.addEventListener('webglcontextrestored', function(){ lost = false; place(); start(); });
   });

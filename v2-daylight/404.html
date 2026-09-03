@@ -44,8 +44,8 @@ body{margin:0;background-color:var(--paper);color:var(--ink);font:400 1.0625rem/
 :target,[id],:focus-visible{scroll-margin-top:calc(var(--hdr) + 2rem)}
 /* 00 the paper: fibre tile, asymmetric turbulence, integer-stitched (0.03x200=6, 0.75x200=150) */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.42'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='0.30'/%3E%3C/svg%3E");
-  background-size:200px 200px,140px 140px;will-change:transform}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size:200px 200px}
 /* 01 the drift: two warm orbs moving very slowly under the sheet, the only motion that lives mid-page */
 .bg{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:var(--paper)}
 .bg i{position:absolute;border-radius:50%;opacity:.8;will-change:transform}
@@ -86,7 +86,7 @@ html:not(.js) .rule::after{transform:none}
 .spine i{display:block;width:100%;height:100%;background:var(--ink);transform-origin:50% 0;transform:scaleY(0)}
 /* 12 header: paper bar */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hdr);display:flex;align-items:center;background:rgba(243,242,238,.5);border-bottom:1px solid transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
-.hdr.scrolled{background:rgba(243,242,238,.92);backdrop-filter:blur(10px);border-bottom-color:var(--line)}
+.hdr.scrolled{background:rgba(243,242,238,.97);border-bottom-color:var(--line)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
 .brand{display:flex;align-items:center;gap:12px;background:none}
 .brand img{height:40px;width:auto}
@@ -367,24 +367,13 @@ document.documentElement.classList.add('js');
     document.addEventListener('pointerleave', function(){ document.documentElement.classList.remove('cur'); shown = false; });
     (function loop(){ cx += (mx - cx) * .3; cy += (my - cy) * .3; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
   }
-  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-  var idle = window.requestIdleCallback || function(f){ setTimeout(f, 120); };
-  idle(function(){
-  if (hasGsap && !reduced) {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.batch('.rv', { start: 'top 90%', once: true, onEnter: function(els){ els.forEach(function(e, i){ setTimeout(function(){ e.classList.add('in'); }, i*80); }); } });
-    document.querySelectorAll('.rule').forEach(function(k){ ScrollTrigger.create({ trigger: k, start: 'top 92%', once: true, onEnter: function(){ k.classList.add('in'); } }); });
-    /* the founding year rises a touch against the scroll, scrubbed: the one cinematic gesture on a still page */
-    var big = document.querySelector('.hero .big');
-    if (big) gsap.to(big, { yPercent: -6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  } else {
-    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
-    document.querySelectorAll('.rv,.rule').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
-  }
-  });
+  /* Engine-free, like Keyline: one observer reveals and counts. No scrubbed parallax, nothing runs on every scroll frame. */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(en){ en.forEach(function(x){ if (!x.isIntersecting) return; var e = x.target; e.classList.add('in'); io.unobserve(e); e.querySelectorAll('b[data-n]').forEach(count); }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
+  function count(b){ if (b.__done || reduced) return; b.__done = true; var final = b.textContent, n = parseFloat(b.dataset.n), pre = b.dataset.pre || '', t0 = null; function step(ts){ if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400); p = 1 - Math.pow(1 - p, 3); b.textContent = pre + Math.round(n * p).toLocaleString('en-US'); if (p < 1) requestAnimationFrame(step); else b.textContent = final; } requestAnimationFrame(step); }
+  document.querySelectorAll('.rv,.rule').forEach(function(e){ io ? io.observe(e) : e.classList.add('in'); });
   /* 04 stroke text: the 1947 draws on, then fills. Port of 04-text/stroke-text.html, mount trigger. JS-off keeps the plain text. */
   var el = document.querySelector('[data-stroke]');
-  if (!el || !hasGsap) return;
+  if (!el) return;
   var NS = 'http://www.w3.org/2000/svg', text = el.dataset.stroke, size = parseFloat(el.dataset.strokeSize || '240');
   var chars = Array.from(text), dash = Math.max(size*7, 200), id = 'stroke-wipe-1';
   var svg = document.createElementNS(NS,'svg'); svg.setAttribute('aria-hidden','true'); svg.setAttribute('preserveAspectRatio','xMinYMid meet'); svg.setAttribute('viewBox','0 ' + (-size) + ' 600 ' + (size*1.3));
@@ -398,9 +387,9 @@ document.documentElement.classList.add('js');
   var box = null;
   function measure(){ var bb; try { bb = sT.getBBox(); } catch(e){ return; } if (!bb || !bb.width) return; var pad = Math.max(2, size*.08); box = { x: bb.x-pad, y: bb.y-pad, w: bb.width+pad*2, h: bb.height+pad*2 }; svg.setAttribute('viewBox', box.x + ' ' + box.y + ' ' + box.w + ' ' + box.h); wipe.setAttribute('x', box.x); wipe.setAttribute('y', box.y); wipe.setAttribute('height', box.h); }
   var strokes = Array.from(sT.querySelectorAll('tspan'));
-  function run(){ measure(); if (!box || reduced) { gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: 0 }); gsap.set(wipe, { attr: { width: box ? box.w : 9999 } }); return; }
-    gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: dash }); gsap.set(wipe, { attr: { width: 0 } });
-    var tl = gsap.timeline(); tl.to(strokes, { strokeDashoffset: 0, duration: 1.7, ease: 'power2.out', stagger: .12 }, 0); tl.to(wipe, { attr: { width: box.w }, duration: .9, ease: 'power2.inOut' }, 1.5); }
+  function run(){ measure(); strokes.forEach(function(t){ t.style.strokeDasharray = dash; }); if (!box || reduced) { strokes.forEach(function(t){ t.style.strokeDashoffset = 0; }); wipe.setAttribute('width', box ? box.w : 9999); return; }
+    strokes.forEach(function(t){ t.style.strokeDashoffset = dash; }); wipe.setAttribute('width', 0); wipe.style.transition = 'width .9s cubic-bezier(.4,0,.2,1) 1.5s';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ strokes.forEach(function(t, i){ t.style.transition = 'stroke-dashoffset 1.7s cubic-bezier(.22,1,.36,1) ' + (i*.12) + 's'; t.style.strokeDashoffset = 0; }); wipe.setAttribute('width', box.w); }); }); }
   var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
   ready.then(function(){ requestAnimationFrame(function(){ requestAnimationFrame(run); }); });
   setTimeout(function(){ if (!box) run(); }, 2500);
