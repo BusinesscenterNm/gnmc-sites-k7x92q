@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Greater North Miami Chamber of Commerce | Founded 1947</title>
-<meta name="description" content="The Greater North Miami Chamber of Commerce champions local business, civic partnership and community growth across Miami-Dade County. Three membership levels from $275 a year.">
+<title>Membership Levels | Greater North Miami Chamber</title>
+<meta name="description" content="Matched to your organization&#x27;s goals, team size, and desired visibility.">
 <link rel="canonical" href="https://greaternorthmiami.org/">
-<meta property="og:title" content="Greater North Miami Chamber of Commerce | Founded 1947">
+<meta property="og:title" content="Membership Levels | Greater North Miami Chamber">
 <meta property="og:description" content="Where North Miami business gets seen, connected and supported. Three membership levels, the price on the page, and an office that answers the phone.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://greaternorthmiami.org/">
@@ -357,6 +357,71 @@ html:not(.js) .hw{display:none}
 .nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
 .nav .btn::after{display:none}
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   INNER PAGE CONTENT · the classes the page bodies use, rebuilt on the same
+   budget as the homepage. Everything that repainted in v3 is gone: no
+   clip-path animation, no canvas hosts, no scroll listeners, no class toggles.
+   ══════════════════════════════════════════════════════════════════════════ */
+.hero-page{padding:var(--s6) 0 var(--s5);position:relative;border-bottom:1px solid var(--line)}
+.hero-page h1{margin:0 0 var(--s3)}
+.crumbs{list-style:none;display:flex;flex-wrap:wrap;gap:.5em;margin:0 0 var(--s4);padding:0;
+  font:500 .78rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.crumbs li+li::before{content:"/";margin-right:.5em;color:var(--line-2)}
+.crumbs a{color:var(--ink-3);text-decoration:none}
+.crumbs a:hover{color:var(--blue)}
+.deck{font-size:var(--t1);color:var(--ink-2);max-width:56ch;margin:0}
+/* the header band image: a static wash, no parallax and no canvas over it */
+.band{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.band img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.band::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--white) 36%,rgba(255,255,255,.62))}
+
+.g12{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s3)}
+.g12>*{grid-column:span 12}
+@media(min-width:940px){
+  .g12>.t{grid-column:span 7}
+  .g12>.a{grid-column:span 5;display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center;justify-content:flex-end}
+}
+.community .g12>*{grid-column:span 12}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2)}
+@media(max-width:940px){.grid-3,.grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* v3 kept its reveal + draw classes on the markup. They are re-pointed here at
+   the compositor-driven versions rather than deleted, so the page still moves. */
+.draw{position:relative}
+.tile{padding:var(--s3) var(--s2)}
+.tile b{display:block;font:800 var(--t3)/1 var(--font);letter-spacing:-.03em}
+.tile span{display:block;margin-top:.5em;font:400 .74rem/1.35 var(--mono);
+  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.kw{color:var(--blue);position:relative;white-space:nowrap}
+.hero-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);margin-top:var(--s5)}
+@media(max-width:900px){.hero-proof{grid-template-columns:repeat(2,1fr)}}
+.hero-copy{max-width:none}
+.hero-fig{position:relative}
+.frame{position:relative;overflow:hidden}
+.frame img{width:100%;height:auto;display:block}
+.tag{position:absolute;left:14px;bottom:14px;background:var(--black);color:#fff;
+  font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:.5em .8em}
+.cta-band{background:var(--blue);color:#fff;padding:var(--s6) 0}
+.cta-band h2{color:#fff}
+.cta-band p,.cta-band .deck{color:rgba(255,255,255,.9)}
+.cta-band .btn-ghost{border-color:#fff;color:#fff}
+.cta-band .btn-ghost:hover{background:#fff;border-color:#fff;color:var(--blue)}
+.ri{width:18px;height:18px}
+.fh{font:600 .76rem/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blue);margin:0 0 var(--s2)}
+/* v3 markup carries these hosts; with no canvas inside they collapse to nothing */
+.fibre-bg,.bokeh-bg,.silk-bg,.waves-bg,.bg{display:none}
+.meter,.ticker,.timeline{display:none}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:.7em .8em;border-bottom:1px solid var(--line)}
+th{font:600 .78rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+
 @media(prefers-reduced-motion:reduce){
   .rv,.kl::before,.kl::after,.kwg,.hw-ink,.hw-fill,.amb::before{animation:none!important}
   .kl::before,.kl::after{transform:none!important}
@@ -400,182 +465,7 @@ html:not(.js) .hw{display:none}
   </div>
 </header>
 
-<main id="main">
-
-  <section class="hero amb">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Founded 1947. Serving in our 80th year.</p>
-        <h1>Where North Miami business gets <span class="mark">seen</span>, connected, and supported</h1>
-        <p class="lede">The Chamber champions local business, civic partnership, and community growth across Miami-Dade County, and has since January 22, 1947.</p>
-        <div class="hero-cta">
-          <a class="btn" href="join.html">Join the Chamber <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></a>
-          <a class="btn btn-ghost" href="membership-levels.html">See the three levels</a>
-        </div>
-      </div>
-      <div class="fig kl">
-        <img src="img/community-960.webp" srcset="img/community-640.webp 640w, img/community-960.webp 960w" sizes="(max-width:1000px) 100vw, 480px" width="960" height="960" alt="Members of the Greater North Miami Chamber at a community bike and skate event" fetchpriority="high">
-        <span class="tag">North Miami, 2026</span>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="proof">
-        <div class="tile kl"><b>1947</b><span>Founded, January 22</span></div>
-        <div class="tile kl"><b>80</b><span>Years of service, this year</span></div>
-        <div class="tile kl"><b>$275</b><span>A year, Business membership</span></div>
-        <div class="tile kl"><b>3</b><span>Membership levels</span></div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <section class="pad">
-    <div class="wrap g2 rv">
-      <div>
-        <p class="eyebrow">Since 1947</p>
-        <h2>Seventy-nine years <span class="kwg">on the record</span></h2>
-      </div>
-      <div>
-        <p>Founded January 22, 1947. For nearly eight decades the Chamber has supported local businesses, strengthened civic partnerships, and helped connect people to the resources that move our community forward.</p>
-        <p>Today it offers 3 membership levels, at $275, $1,750 and $200 a year, and keeps office hours 5 days a week. Looking ahead, we remain focused on growth, collaboration, and a stronger future for Greater North Miami.</p>
-        <a class="btn btn-ghost" href="about.html">About the Chamber</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad alt amb">
-    <div class="wrap">
-      <p class="eyebrow">Member benefits</p>
-      <h2>What do members get for <span class="kwg">$275 a year</span>?</h2>
-      <div class="g3 rv" style="margin-top:var(--s5)">
-        <a class="card kl" href="membership-benefits.html">
-          <span class="num">01</span>
-          <h3>Business visibility</h3>
-          <p>Promote your business through membership, events, and direct exposure to the local business community.</p>
-          <span class="go">Membership benefits <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></span>
-        </a>
-        <a class="card kl" href="events.html">
-          <span class="num">02</span>
-          <h3>Networking and events</h3>
-          <p>Connect with local business owners and leaders across North Miami through year-round Chamber programming.</p>
-          <span class="go">See events <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></span>
-        </a>
-        <a class="card kl" href="business-resources.html">
-          <span class="num">03</span>
-          <h3>Member resources</h3>
-          <p>Access resources and opportunities that support local business growth, from referrals to practical tools.</p>
-          <span class="go">Business resources <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad">
-    <div class="wrap g2 rv">
-      <div class="fig kl">
-        <img src="img/live/about-us-img.webp" srcset="img/live/about-us-img-640.webp 640w, img/live/about-us-img.webp 1200w" sizes="(max-width:940px) 100vw, 560px" width="1200" height="800" alt="Chamber members and community partners at a Greater North Miami event" loading="lazy">
-      </div>
-      <div>
-        <p class="eyebrow">Our community</p>
-        <h2>A trusted connector for a <span class="kwg">multicultural</span> business community</h2>
-        <p>We empower businesses, entrepreneurs, and residents through advocacy, education, and connection across Greater North Miami and Miami-Dade County.</p>
-        <a class="btn btn-ghost" href="about.html">About the Chamber</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad alt amb">
-    <div class="wrap">
-      <p class="eyebrow">Membership</p>
-      <h2>Three levels. The price is <span class="kwg">on the page</span>.</h2>
-      <div class="g3 rv" style="margin-top:var(--s5)">
-        <div class="lvl kl feature">
-          <h3>Business Membership</h3>
-          <p class="price">$275 <small>a year</small></p>
-          <ul>
-            <li>Directory listing</li>
-            <li>Member pricing on events</li>
-            <li>Networking and committee access</li>
-            <li>Visibility to the local business community</li>
-          </ul>
-          <a class="btn btn-citron" href="join.html">Choose Business</a>
-        </div>
-        <div class="lvl kl">
-          <h3>Trustee Membership</h3>
-          <p class="price">$1,750 <small>a year</small></p>
-          <ul>
-            <li>Premium directory placement</li>
-            <li>Event sponsorship recognition</li>
-            <li>Priority visibility across Chamber channels</li>
-            <li>Everything in Business Membership</li>
-          </ul>
-          <a class="btn btn-ghost" href="join.html">Choose Trustee</a>
-        </div>
-        <div class="lvl kl">
-          <h3>Nonprofit Membership</h3>
-          <p class="price">$200 <small>a year</small></p>
-          <ul>
-            <li>Directory listing</li>
-            <li>Member pricing on events</li>
-            <li>Community programming access</li>
-            <li>Reduced rate for registered nonprofits</li>
-          </ul>
-          <a class="btn btn-ghost" href="join.html">Choose Nonprofit</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad">
-    <div class="wrap">
-      <p class="eyebrow">Coming up</p>
-      <h2>On the <span class="kwg">calendar now</span></h2>
-      <div class="rv" style="margin-top:var(--s4)">
-        <a class="ev" href="chamber-events-calendar.html">
-          <span class="n">01</span>
-          <span><h3>Before You Scale Workshop</h3><span class="kind">Workshop</span></span>
-        </a>
-        <a class="ev" href="chamber-events-calendar.html">
-          <span class="n">02</span>
-          <span><h3>Burgers and Shakes grand opening</h3><span class="kind">Member celebration</span></span>
-        </a>
-      </div>
-      <div class="rv" style="margin-top:var(--s4)">
-        <a class="btn btn-ghost" href="chamber-events-calendar.html">Full calendar</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad alt amb">
-    <div class="wrap">
-      <p class="eyebrow">Everything, one click away</p>
-      <h2>Everything the Chamber offers, <span class="kwg">one click away</span></h2>
-      <div class="g3 rv" style="margin-top:var(--s5)">
-        <a class="card kl" href="membership.html"><span class="num">01</span><h3>Membership</h3><p>Build visibility, credibility, and stronger local connections through Chamber membership.</p></a>
-        <a class="card kl" href="events.html"><span class="num">02</span><h3>Events</h3><p>Connect with business owners, civic leaders, and community partners across the year.</p></a>
-        <a class="card kl" href="chamber-events-calendar.html"><span class="num">03</span><h3>Event calendar</h3><p>Explore local meetings, programs, and events serving Greater North Miami.</p></a>
-        <a class="card kl" href="business-resources.html"><span class="num">04</span><h3>Business resources</h3><p>Access practical tools, referrals, and support for businesses at any stage.</p></a>
-        <a class="card kl" href="chamber-news.html"><span class="num">05</span><h3>Chamber news</h3><p>Stay informed on Chamber updates, member highlights, and local business news.</p></a>
-        <a class="card kl" href="contact-us.html"><span class="num">06</span><h3>Contact the office</h3><p>Reach the Chamber Monday to Friday, 8:30 AM to 4:30 PM, by phone or email.</p></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="wrap">
-      <div>
-        <h2>Start your membership today</h2>
-        <p>The application takes a few minutes. The office answers the phone Monday to Friday, 8:30 AM to 4:30 PM.</p>
-      </div>
-      <div class="acts">
-        <a class="btn btn-citron" href="join.html">Join the Chamber <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></a>
-        <a class="btn btn-ghost" href="contact-us.html">Talk to the office</a>
-      </div>
-    </div>
-  </section>
-
-</main>
+<main id="main"><section class="hero-page"><div class="band" aria-hidden="true"><img decoding="async" src="img/live/membership-hdr-2.webp" width="1600" height="291" alt="" fetchpriority="high"></div><div class="wrap"><nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="index.html">Home</a></li><li>Membership</li><li aria-current="page">Membership Levels</li></ol></nav><p class="eyebrow">Pick your level</p><h1 class="inkline">Membership levels</h1><p class="deck">Matched to your organization&#x27;s goals, team size, and desired visibility.</p></div></section><section class="pad"><div class="wrap g12 prose"><div class="aside rv"><div class="sq kl draw"><img decoding="async" src="img/live/membership-img.webp" srcset="img/live/membership-img-640.webp 640w, img/live/membership-img.webp 1200w" sizes="(max-width: 900px) 100vw, 600px" width="1000" height="1000" alt="Membership Levels, Greater North Miami Chamber" loading="lazy"></div><div class="note">Office: 13100 West Dixie Highway, North Miami, FL 33161. Monday to Friday, 8:30 AM to 4:30 PM.</div></div><div class="main rv"><h2>How to choose</h2><p>Choose the membership level that matches your organization&#x27;s goals, team size, and desired visibility. Each level is designed to create opportunity, with scalable options for nonprofits, small businesses, and organizations ready to lead.</p></div></div></section><section class="pad" id="levels" style="background:var(--surf-1);border-top:1px solid var(--line)"><div class="wrap"><div class="pills" role="tablist" aria-label="Highlight a level"><span class="slide" aria-hidden="true"></span><button class="pill" role="tab" type="button" aria-selected="false" tabindex="-1">Business</button><button class="pill" role="tab" type="button" aria-selected="true" tabindex="0">Trustee</button><button class="pill" role="tab" type="button" aria-selected="false" tabindex="-1">Nonprofit</button></div><div class="levels"><div class="level rv"><div><h3>Business Membership</h3><p style="color:var(--ink-2);margin:6px 0 0;font-size:.95rem">The core membership for businesses of every size.</p></div><div class="price">$275<small>per year</small></div><ul><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Directory listing</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Member pricing on events</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Networking and committee access</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Visibility opportunities</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Community calendar submission privileges</span></li></ul><a class="btn btn-ghost" href="join.html">Choose Business</a></div><div class="level rv lead"><span class="tag">Leadership tier</span><div><h3>Trustee Membership</h3><p style="color:var(--ink-2);margin:6px 0 0;font-size:.95rem">The Chamber&#x27;s leadership tier.</p></div><div class="price">$1,750<small>per year</small></div><ul><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Premium directory placement</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Event sponsorship recognition</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Priority visibility across Chamber communications</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>A seat at the table on initiatives shaping business across Miami-Dade</span></li></ul><a class="btn " href="join.html">Choose Trustee</a></div><div class="level rv"><div><h3>Nonprofit Membership</h3><p style="color:var(--ink-2);margin:6px 0 0;font-size:.95rem">Full Chamber membership for nonprofit organizations.</p></div><div class="price">$200<small>per year</small></div><ul><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Directory listing</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Event access</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Networking</span></li><li><svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 15.2L19.2 6L20.6 7.4L10 18L3.6 11.6L5 10.2L10 15.2Z"/></svg><span>Community calendar submission privileges</span></li></ul><a class="btn btn-ghost" href="join.html">Choose Nonprofit</a></div></div></div></section><section class="pad"><div class="wrap"><p class="eyebrow rv">Questions</p><h2 class="rv">Before you <span class="kwg">choose</span></h2><div class="faq rv"><details open><summary>Can a nonprofit join? <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg></summary><div class="a">Yes. Nonprofit Membership is $200 a year and is full Chamber membership: directory listing, event access, networking, and community calendar submission privileges.</div></details><details><summary>What does the Trustee level add? <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg></summary><div class="a">Premium directory placement, event sponsorship recognition, priority visibility across Chamber communications, and a seat at the table on initiatives shaping business across Miami-Dade.</div></details><details><summary>How do I apply? <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg></summary><div class="a">Through the member portal from the Join page. If you would rather talk first, call the office on 305-891-7811, Monday to Friday, 8:30 AM to 4:30 PM.</div></details></div></div></section><section class="cta-band"><div class="wrap g12"><div class="t"><h2 class="rv">Ready to <span class="kwg">join</span>?</h2><p class="deck rv">Three levels, the price on the page, and an office that answers the phone.</p></div><div class="a rv"><a class="btn btn-citron" href="join.html">Join the Chamber <svg class="ri " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 13H4V11H12V4L20 12L12 20V13Z"/></svg></a><a class="btn btn-ghost" href="contact-us.html">Talk to the office</a></div></div></section></main>
 
 <footer class="ftr">
   <div class="wrap">
@@ -606,7 +496,7 @@ html:not(.js) .hw{display:none}
           <li><a href="membership.html">Membership</a></li>
           <li><a href="why-join.html">Why Join</a></li>
           <li><a href="membership-benefits.html">Membership Benefits</a></li>
-          <li><a href="membership-levels.html">Membership Levels</a></li>
+          <li><a href="membership-levels.html" aria-current="page">Membership Levels</a></li>
           <li><a href="join.html">Join the Chamber</a></li>
         </ul>
       </div>
