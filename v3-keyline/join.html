@@ -410,6 +410,53 @@ html:not(.js) .cnav__burger{display:none}
 /* -- low-power mode: the page measures itself and strips back if the machine cannot keep up -- */
 NaN
 </style>
+<!--
+  GATE-DECLARATION
+  BRIEF: ../../index.brief.md
+  BOARD: ../../index.moodboard.html
+  TRACK: WEB
+  TIER: CONVERSION, with a SHOWPIECE hero band
+  SCALE-DOWN-17-3d: CSS perspective on the hero frame only. A civic body on a white ground has no honest use for WebGL, and the huang style spends its one signature touch on the keyline, not on a canvas
+  PAGES: 21 :: index.html, about.html, our-mission.html, board-of-directors.html, staff.html, committees.html, membership.html, why-join.html, membership-benefits.html, membership-levels.html, join.html, events.html, chamber-events-calendar.html, chamber-news.html, resources.html, business-resources.html, start-a-business-in-miami-dade.html, economic-snapshot.html, the-business-center-miami.html, community-links.html, contact-us.html :: sitemap.xml :: robots.txt :: 404.html
+  SCALE-DOWN-15-progress: the reading-progress meter ships on the home page, where a long
+    scrolling narrative earns one. An inner page is a single subject read in one sitting, so a
+    meter there measures nothing a visitor wants to know and adds a scroll-frame cost for it.
+  METRIC: membership applications started from the website per month
+  GOAL: get a qualified local business to start a membership application
+  STYLE: huang
+  STAR: the blueprint: the logo's double keyline drawn on around the hero photograph, on a visible 12-column grid, in the logo's own three colours on white. The Chamber as the frame that local business sits inside
+  CONTRAST: SIZE h1 3.8rem against 1.06rem body, a 3.6x step :: WEIGHT 850 display against 400 text ::
+    STRUCTURE two families, Archivo grotesque for voice and Geist Mono for labels and eyebrows ::
+    COLOUR blue and citron accents against near-black ink on white :: TEXTURE mono uppercase with
+    .14em tracking reads as a different surface to the prose :: POSITION the double keyline frames
+    offset content from the grid ground. NOT IN PLAY: form, no italic in the system, and DIRECTION,
+    everything runs horizontal because a civic body reading on a phone is not the place for rotated type.
+  HIERARCHY: macro=the hero headline leads, the photograph answers it, and the filled blue Join button
+    is the only saturated fill above the fold |
+    meso=cards defer to the page, their h3 sits below any section h2 and their keyline is the same
+    weight as the page motif so a card never reads as a section |
+    micro=the stat tiles put the VALUE first in 800-weight display and the LABEL under it in mono
+    uppercase at .74rem in ink-3, so the number leads and the label explains, never the reverse.
+  CUE: the eyebrow's citron square points into the headline, the keyline draws left to right across
+    the hero frame toward the CTA pair, and the primary button carries an arrow glyph that slides
+    on hover. The eye is walked star to action rather than left to find it.
+  MOTIF: the double keyline, citron outer and blue inner, at every scale :: .kl, .tile, .card, .level, .btn-ghost, .frame, .util, :focus-visible
+  VARIANTS: v1 marine nolan the lit frame BUILT :: v2 daylight zendaya the ledger BUILT :: v3 keyline huang the blueprint BUILT, all three rendered as full sites in this folder
+  REFERENCES: https://slush.org :: https://www.houston.org :: https://charlotteregion.com :: https://www.miamichamber.com :: https://www.canneslions.com :: https://detroitchamber.com
+  SWEPT: rung 1 both halves: Eventex Awards for the events half, ACCE Awards for Communications Excellence for the chamber half, whose 2026 Websites winners are registered in atlas.json. 34 US chambers measured with reference-traffic.mjs on revenue, traffic and hierarchy. The nine sites on the board were opened, shot and annotated; Jordan then kept six and deleted three.
+  MEASURED: 34 chambers swept 2026-08-27. REVENUE from IRS Form 990 via ProPublica for 32 of 34, the client at $66,001 FY2023 (EIN 59-0642080). TRAFFIC by Tranco top-1M rank, 16 of 34 inside it. HIERARCHY on the rendered page for 34 of 34: medians 7 type sizes, 51px largest type, 10 transformed elements. NOT measured: Similarweb engagement, rate-limited at 1 of 34, recorded unknown never zero.
+  SOURCED: references/design-dev-resource-library/components/01-backgrounds/grid-cells-breathing.html, references/design-dev-resource-library/components/02-cursors/dual-ring-dot.html, references/design-dev-resource-library/components/03-hover/showcase-fill-lift-glow.html, references/design-dev-resource-library/components/04-text/character-reveal-headline.html, references/design-dev-resource-library/components/05-scroll/staggered-section-reveal.html, references/design-dev-resource-library/components/06-icons/remix-icon-system.html, references/design-dev-resource-library/components/07-buttons/sweep-fill-cta.html, references/design-dev-resource-library/components/08-cards/kpi-stat-tile.html, references/design-dev-resource-library/components/09-borders/gradient-mask-border-reveal.html, references/design-dev-resource-library/components/10-images/hover-zoom-tag-reveal-grid.html, references/design-dev-resource-library/components/11-grids/chart-grid-12.html, references/design-dev-resource-library/components/12-headers/scroll-aware-nav-mobile-drawer.html, references/design-dev-resource-library/components/13-links/fill-sweep-underline-draw-arrow-slide.html, references/design-dev-resource-library/components/15-progress/count-up-stat-numbers.html, references/design-dev-resource-library/components/15-progress/meter-bar-rows.html, references/design-dev-resource-library/components/16-interactive/sliding-pill-tab-filter.html, references/design-dev-resource-library/components/16-interactive/faq-accordion-single-open.html
+  TYPE-LEVEL: 2
+  TYPE-ANCHOR: Archivo
+  TYPE-SUBHEAD: Geist Mono
+  TYPE-BODY: Archivo
+  TYPE-RATIO: 1.25
+  TYPE-ALTERNATES: Public Sans with Geist Mono, Switzer with Tanker
+  OBJECTIONS: what is this and is it for me -> [#hero] ; is it still alive -> [#proof] ; what do I get -> [#pillars] ; are these people like me -> [#community] ; is the price worth it -> [#levels] ; will anyone respond -> [#events]
+  HERO: headline, context, proof tiles and a filled blue CTA all inside the first screen at 1440 and 390
+  HERO-PROOF: founded 1947 and in the 80th year of service, three levels with the real price, as keyline tiles in the first screen. The Chamber publishes no member count and no testimonials, so longevity is the proof and every figure is checkable on the live site
+  MOODBOARD: index.moodboard.html, one folder up, committed 2026-08-27, before this version existed
+-->
 </head>
 <body>
 <div class="bg" aria-hidden="true"><i class="a" style="left:1401px;top:761px;--d:0.00s"></i><i class="a" style="left:161px;top:721px;--d:0.36s"></i><i class="b" style="left:881px;top:601px;--d:0.71s"></i><i class="a" style="left:1481px;top:441px;--d:1.07s"></i><i class="a" style="left:441px;top:681px;--d:1.43s"></i><i class="a" style="left:1441px;top:481px;--d:1.79s"></i><i class="a" style="left:441px;top:1001px;--d:2.14s"></i><i class="b" style="left:1px;top:41px;--d:2.50s"></i><i class="a" style="left:481px;top:841px;--d:2.86s"></i><i class="a" style="left:1041px;top:921px;--d:3.21s"></i><i class="a" style="left:481px;top:401px;--d:3.57s"></i><i class="a" style="left:441px;top:1001px;--d:3.93s"></i><i class="a" style="left:441px;top:321px;--d:4.29s"></i><i class="a" style="left:921px;top:321px;--d:4.64s"></i></div>
