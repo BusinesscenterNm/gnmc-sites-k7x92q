@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Every AI answer engine reads this site the same way a browser does. Nothing is gated.
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://greaternorthmiami.org/sitemap.xml
